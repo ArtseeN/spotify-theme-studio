@@ -22,6 +22,12 @@ Spotify Theme Studio is a Windows app that turns the Spotify desktop client into
 
 It installs Spicetify for you, backs up Spotify before changing anything, re-applies your theme after Spotify updates, and can put Spotify back to stock with one button.
 
+### In Spotify
+
+A custom background image behind see-through panels, a frosted sticky header, an accent-colored play button and the Discord button in the top bar:
+
+<img src="docs/screenshots/spotify.png" alt="Spotify with a Theme Studio theme applied" width="900" />
+
 ## Features
 
 ### 🎨 Theme editor
