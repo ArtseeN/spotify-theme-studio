@@ -1,0 +1,57 @@
+{
+  "name": "spotify-studio",
+  "productName": "Spotify Studio",
+  "version": "0.1.0",
+  "description": "Customize the Spotify desktop app without code: colors, backgrounds, logo, layout and more, powered by Spicetify.",
+  "license": "MIT",
+  "author": "ArtseeN",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtseeN/spotify-theme-studio.git"
+  },
+  "homepage": "https://github.com/ArtseeN/spotify-theme-studio#readme",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n vite,app \"vite\" \"wait-on tcp:127.0.0.1:5173 && node scripts/run-electron.mjs --dev\"",
+    "build": "vite build",
+    "start": "vite build && node scripts/run-electron.mjs",
+    "icon": "node scripts/make-icon.mjs",
+    "dist": "node scripts/make-icon.mjs && vite build && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.spotifystudio.app",
+    "productName": "Spotify Studio",
+    "files": [
+      "dist/**",
+      "electron/**",
+      "shared/**",
+      "build/icon.png",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false
+    }
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3",
+    "vite": "^8.3.5",
+    "wait-on": "^9.5.1"
+  }
+}
