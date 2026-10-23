@@ -11,6 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DEV = process.argv.includes('--dev')
 const START_HIDDEN = process.argv.includes('--hidden')
 
+// Ayar klasörü uygulamanın adından bağımsız sabit; ad değişince kayıtlı ayarlar ve temalar kaybolmasın
+app.setPath('userData', path.join(app.getPath('appData'), 'Spotify Studio'))
 const DATA_DIR = app.getPath('userData')
 const MEDIA_DIR = path.join(DATA_DIR, 'media')
 const CONFIG_FILE = path.join(DATA_DIR, 'config.json')

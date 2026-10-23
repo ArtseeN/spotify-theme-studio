@@ -1,6 +1,6 @@
 {
   "name": "spotify-studio",
-  "productName": "Spotify Studio",
+  "productName": "Spotify Theme Studio",
   "version": "0.1.0",
   "description": "Customize the Spotify desktop app without code: colors, backgrounds, logo, layout and more, powered by Spicetify.",
   "license": "MIT",
@@ -21,7 +21,7 @@
   },
   "build": {
     "appId": "com.spotifystudio.app",
-    "productName": "Spotify Studio",
+    "productName": "Spotify Theme Studio",
     "files": [
       "dist/**",
       "electron/**",
@@ -39,7 +39,10 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "perMachine": false
+      "perMachine": false,
+      "shortcutName": "Spotify Theme Studio",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   },
   "dependencies": {
