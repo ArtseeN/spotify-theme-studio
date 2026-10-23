@@ -8,7 +8,7 @@
 
 Pick colors, drop in a background image or video, add your own logo, hide the buttons you never use, and apply it all with one click.
 
-**English** · [Türkçe](README.tr.md) · [Join our Discord](https://discord.gg/ZKtPU5BHuN)
+[Join our Discord](https://discord.gg/ZKtPU5BHuN)
 
 <img src="docs/screenshots/home.png" alt="Spotify Theme Studio home screen" width="900" />
 
