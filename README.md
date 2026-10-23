@@ -8,7 +8,7 @@
 
 Pick colors, drop in a background image or video, add your own logo, hide the buttons you never use, and apply it all with one click.
 
-[Join our Discord](https://discord.gg/ZKtPU5BHuN)
+[**Download for Windows**](https://github.com/ArtseeN/spotify-theme-studio/releases/latest) · [Join our Discord](https://discord.gg/ZKtPU5BHuN)
 
 <img src="docs/screenshots/home.png" alt="Spotify Theme Studio home screen" width="900" />
 
@@ -84,11 +84,18 @@ Put an image or your name (rendered as a gradient in your accent color) in Spoti
 ## Getting started
 
 ### Requirements
-- Windows 10 or 11
+- Windows 10 or 11 (x64)
 - The **Spotify desktop app** from [spotify.com](https://www.spotify.com/download/), opened at least once
-- [Node.js](https://nodejs.org) 20 or newer and Git (to run from source)
 
-### Install and run
+### Download (recommended)
+
+1. Grab `Spotify-Theme-Studio-<version>-Setup.rar` from the [latest release](https://github.com/ArtseeN/spotify-theme-studio/releases/latest).
+2. Extract it and run the installer.
+3. If Windows shows **"Windows protected your PC"**, click **More info → Run anyway**. The app isn't code-signed, so SmartScreen warns about it.
+
+### Run from source
+
+Requires [Node.js](https://nodejs.org) 20 or newer and Git.
 
 ```bash
 git clone https://github.com/ArtseeN/spotify-theme-studio.git
