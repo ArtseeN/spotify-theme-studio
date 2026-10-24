@@ -43,6 +43,14 @@ const BANDS = [
   '#main-view main > section > div:not([data-testid="entity-header"]) > div[style*="background-color"]',
 ].join(',\n')
 const HEADER_BAND = '#main-view [data-testid="entity-header"] > div[style*="background-color"]'
+// Kapaktan renk çıkarılmayan sayfalarda (Beğenilen Şarkılar gibi sabit renkliler) Spotify başlık bandının
+// üstüne alta doğru koyulaşan bir karartma, buton çubuğunun arkasına da satır içi renkli opak bir kutu koyuyor.
+// Dinamik renkli sayfalarda (çalma listeleri) bunların yerine saydamlaşan gradyanlar var.
+const HEADER_SHADE = `${HEADER_BAND} + div`
+const ACTION_BAR_BAND = [
+  '#main-view div[style*="background-color"]:has(+ [data-testid="action-bar"])',
+  '#main-view div[style*="background-color"]:has(+ * [data-testid="action-bar"])',
+].join(',\n')
 // Kullanıcı çalma listeleri, albüm ve sanatçı sayfalarında bantlar satır içi --background-base'ten üretilen
 // gradyanla boyanıyor (başlık ve altındaki oynatma butonları bandı). Başlık yazısı ve Spotify'ın renk
 // setleri de aynı değişkeni taşıdığı için hariç tutuluyor.
@@ -151,7 +159,8 @@ function headerColorsCss(cfg) {
 /* Başlık renkleri: tema */
 :root { --studio-band: color-mix(in srgb, var(--spice-button) 32%, var(--spice-main)); }
 ${BANDS},
-${HEADER_BAND} { background-color: var(--studio-band) !important; }
+${HEADER_BAND},
+${ACTION_BAR_BAND} { background-color: var(--studio-band) !important; }
 ${GRADIENT_BANDS},
 #main-view .main-topBar-background {
   --background-base: var(--studio-band) !important;
@@ -290,7 +299,9 @@ function backgroundCss() {
 html, body, #main, .Root, .Root__top-container, .Root__globalNav {
   background: transparent !important;
 }
-#studio-bg { position: fixed; inset: calc(var(--studio-bg-blur) * -2); z-index: 0; pointer-events: none; }
+/* Arka plan eksi z-index ile her şeyin altına iner. #main'e z-index verilirse body'ye eklenen modallar
+   (Ayrıntıları düzenle gibi, çoğunun z-index'i yok ya da 0) sayfanın altında kalıyor. */
+#studio-bg { position: fixed; inset: calc(var(--studio-bg-blur) * -2); z-index: -1; pointer-events: none; }
 /* Resim boyutu: konuma göre üstten, ortadan ya da alttan büyür/küçülür; küçülünce kenarlar tema rengiyle dolar */
 #studio-bg { background-color: var(--spice-main); }
 #studio-bg > img, #studio-bg > video {
@@ -307,7 +318,6 @@ html, body, #main, .Root, .Root__top-container, .Root__globalNav {
   filter: blur(var(--studio-bg-blur)) saturate(var(--studio-bg-saturation));
 }
 @keyframes studio-gradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-#main { position: relative; z-index: 1; }
 
 /* Saydam panellerde sınırlar kaybolmasın */
 ${PANELS}, ${PLAYER} { outline: 1px solid rgba(var(--spice-rgb-text), .07); outline-offset: -1px; }
@@ -351,6 +361,15 @@ ${GRADIENT_BANDS} {
 ${BANDS} {
   -webkit-mask-image: linear-gradient(#000, transparent);
   mask-image: linear-gradient(#000, transparent);
+}
+/* Sabit renkli sayfalar (Beğenilen Şarkılar): başlıktaki karartma kalkar, buton çubuğunun arkasındaki opak kutu
+   dinamik renkli sayfalardaki gibi bandın %70'inden saydama erir; böylece çalma listeleriyle aynı görünür */
+${HEADER_SHADE} { background: none !important; }
+${ACTION_BAR_BAND} {
+  background-image: none !important;
+  opacity: var(--studio-panel-alpha);
+  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, .7), transparent);
+  mask-image: linear-gradient(rgba(0, 0, 0, .7), transparent);
 }
 /* Kaydırınca yapışan üst çubuk (Oynat butonu + başlık) ve şarkı listesinin sütun başlığı (# Başlık Albüm …).
    İkisi de panel opaklığını izler; altından geçen satırlar buzlu camla bulanıklaşır ve iki parça tek bir
@@ -401,6 +420,7 @@ function lightThemeCss() {
 /* Açık tema: koyu başlık bantları */
 ${BANDS},
 ${HEADER_BAND},
+${ACTION_BAR_BAND},
 ${GRADIENT_BANDS} {
   opacity: .28 !important;
   background-image: none !important;
