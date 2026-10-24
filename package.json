@@ -1,7 +1,7 @@
 {
   "name": "spotify-studio",
   "productName": "Spotify Theme Studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Customize the Spotify desktop app without code: colors, backgrounds, logo, layout and more, powered by Spicetify.",
   "license": "MIT",
   "author": "ArtseeN",
